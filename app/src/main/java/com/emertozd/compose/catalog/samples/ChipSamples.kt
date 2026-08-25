@@ -16,6 +16,7 @@
 
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -56,14 +57,13 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
-import com.emertozd.compose.catalog.library.Sampled
 
 @Preview
 @Sampled
@@ -103,7 +103,7 @@ fun ElevatedAssistChipSample() {
 @Sampled
 @Composable
 fun FilterChipSample() {
-    var selected by remember { mutableStateOf(false) }
+    var selected by rememberSaveable { mutableStateOf(false) }
     FilterChip(
         selected = selected,
         onClick = { selected = !selected },
@@ -126,8 +126,33 @@ fun FilterChipSample() {
 @Preview
 @Sampled
 @Composable
+fun FilterChipWithCornerMorphingSample() {
+    var selected by rememberSaveable { mutableStateOf(false) }
+    FilterChip(
+        selected = selected,
+        onClick = { selected = !selected },
+        label = { Text("Filter chip") },
+        shapes = FilterChipDefaults.shapes(),
+        leadingIcon =
+            if (selected) {
+                {
+                    Icon(
+                        imageVector = Icons.Filled.Done,
+                        contentDescription = "Localized Description",
+                        modifier = Modifier.size(FilterChipDefaults.IconSize),
+                    )
+                }
+            } else {
+                null
+            },
+    )
+}
+
+@Preview
+@Sampled
+@Composable
 fun ElevatedFilterChipSample() {
-    var selected by remember { mutableStateOf(false) }
+    var selected by rememberSaveable { mutableStateOf(false) }
     ElevatedFilterChip(
         selected = selected,
         onClick = { selected = !selected },
@@ -150,8 +175,46 @@ fun ElevatedFilterChipSample() {
 @Preview
 @Sampled
 @Composable
+fun ElevatedFilterChipWithCornerMorphingSample() {
+    var selected by rememberSaveable { mutableStateOf(false) }
+    ElevatedFilterChip(
+        selected = selected,
+        onClick = { selected = !selected },
+        label = { Text("Filter chip") },
+        shapes = FilterChipDefaults.shapes(),
+        leadingIcon =
+            if (selected) {
+                {
+                    Icon(
+                        imageVector = Icons.Filled.Done,
+                        contentDescription = "Localized Description",
+                        modifier = Modifier.size(FilterChipDefaults.IconSize),
+                    )
+                }
+            } else {
+                {
+                    Icon(
+                        imageVector = Icons.Filled.Home,
+                        contentDescription = "Localized description",
+                        modifier = Modifier.size(FilterChipDefaults.IconSize),
+                    )
+                }
+            },
+        trailingIcon = {
+            Icon(
+                imageVector = Icons.Filled.ArrowDropDown,
+                contentDescription = "Localized Description",
+                modifier = Modifier.size(FilterChipDefaults.IconSize),
+            )
+        },
+    )
+}
+
+@Preview
+@Sampled
+@Composable
 fun FilterChipWithLeadingIconSample() {
-    var selected by remember { mutableStateOf(false) }
+    var selected by rememberSaveable { mutableStateOf(false) }
     FilterChip(
         selected = selected,
         onClick = { selected = !selected },
@@ -181,7 +244,7 @@ fun FilterChipWithLeadingIconSample() {
 @Sampled
 @Composable
 fun FilterChipWithTrailingIconSample() {
-    var selected by remember { mutableStateOf(false) }
+    var selected by rememberSaveable { mutableStateOf(false) }
     FilterChip(
         selected = selected,
         onClick = { selected = !selected },
@@ -212,7 +275,7 @@ fun FilterChipWithTrailingIconSample() {
 @Sampled
 @Composable
 fun FilterChipWithCustomSpacingSample() {
-    var selected by remember { mutableStateOf(false) }
+    var selected by rememberSaveable { mutableStateOf(false) }
     FilterChip(
         selected = selected,
         onClick = { selected = !selected },
@@ -232,11 +295,12 @@ fun FilterChipWithCustomSpacingSample() {
         horizontalArrangement = FilterChipDefaults.horizontalArrangement(4.dp),
     )
 }
+
 @Preview
 @Sampled
 @Composable
 fun InputChipSample() {
-    var selected by remember { mutableStateOf(false) }
+    var selected by rememberSaveable { mutableStateOf(false) }
     InputChip(
         selected = selected,
         onClick = { selected = !selected },
@@ -248,11 +312,31 @@ fun InputChipSample() {
 @Sampled
 @Composable
 fun InputChipWithAvatarSample() {
-    var selected by remember { mutableStateOf(false) }
+    var selected by rememberSaveable { mutableStateOf(false) }
     InputChip(
         selected = selected,
         onClick = { selected = !selected },
         label = { Text("Input Chip") },
+        avatar = {
+            Icon(
+                Icons.Filled.Person,
+                contentDescription = "Localized description",
+                Modifier.size(InputChipDefaults.AvatarSize),
+            )
+        },
+    )
+}
+
+@Preview
+@Sampled
+@Composable
+fun InputChipWithCornerMorphingSample() {
+    var selected by rememberSaveable { mutableStateOf(false) }
+    InputChip(
+        selected = selected,
+        onClick = { selected = !selected },
+        label = { Text("Input Chip") },
+        shapes = InputChipDefaults.shapes(),
         avatar = {
             Icon(
                 Icons.Filled.Person,
@@ -281,7 +365,7 @@ fun ElevatedSuggestionChipSample() {
 @Sampled
 @Composable
 fun ChipGroupSingleLineSample() {
-    var expanded by remember { mutableStateOf(false) }
+    var expanded by rememberSaveable { mutableStateOf(false) }
     val listSize = 9
     val chipData = List(listSize) { index -> "Chip $index" }
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -331,7 +415,7 @@ fun ChipGroupSingleLineSample() {
 @Sampled
 @Composable
 fun ChipGroupReflowSample() {
-    var selected by remember { mutableStateOf(false) }
+    var selected by rememberSaveable { mutableStateOf(false) }
     val colorNames =
         listOf(
             "Blue",

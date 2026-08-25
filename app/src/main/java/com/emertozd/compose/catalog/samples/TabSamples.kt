@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector1D
@@ -59,6 +62,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -67,12 +71,15 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.Measurable
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.paneTitle
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.library.Sampled
 import kotlinx.coroutines.launch
 
 @Preview
@@ -80,7 +87,7 @@ import kotlinx.coroutines.launch
 @Sampled
 @OptIn(ExperimentalMaterial3Api::class)
 fun PrimaryTextTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3 with lots of text")
     Column {
         PrimaryTabRow(selectedTabIndex = state) {
@@ -104,7 +111,7 @@ fun PrimaryTextTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun PrimaryIconTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val icons = listOf(Icons.Filled.Favorite, Icons.Filled.Favorite, Icons.Filled.Favorite)
     Column {
         PrimaryTabRow(selectedTabIndex = state) {
@@ -115,7 +122,20 @@ fun PrimaryIconTabs() {
                         TooltipDefaults.rememberTooltipPositionProvider(
                             TooltipAnchorPosition.Above
                         ),
-                    tooltip = { PlainTooltip { Text("Favorite") } },
+                    tooltip = {
+                        PlainTooltip(
+                            modifier =
+                                Modifier.semantics {
+                                    // TODO(b/496338253): Remove this modifier once bug where
+                                    //  tooltip text is not announced by a11y screen readers is
+                                    // resolved.
+                                    liveRegion = LiveRegionMode.Assertive
+                                    paneTitle = "Favorite"
+                                }
+                        ) {
+                            Text("Favorite")
+                        }
+                    },
                     state = rememberTooltipState(),
                 ) {
                     Tab(
@@ -139,7 +159,7 @@ fun PrimaryIconTabs() {
 @Sampled
 @OptIn(ExperimentalMaterial3Api::class)
 fun SecondaryTextTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3 with lots of text")
     Column {
         SecondaryTabRow(selectedTabIndex = state) {
@@ -164,7 +184,7 @@ fun SecondaryTextTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun TextTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3 with lots of text")
     Column {
         PrimaryTabRow(selectedTabIndex = state) {
@@ -188,7 +208,7 @@ fun TextTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun SecondaryIconTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val icons = listOf(Icons.Filled.Favorite, Icons.Filled.Favorite, Icons.Filled.Favorite)
     Column {
         SecondaryTabRow(selectedTabIndex = state) {
@@ -199,7 +219,20 @@ fun SecondaryIconTabs() {
                         TooltipDefaults.rememberTooltipPositionProvider(
                             TooltipAnchorPosition.Above
                         ),
-                    tooltip = { PlainTooltip { Text("Favorite") } },
+                    tooltip = {
+                        PlainTooltip(
+                            modifier =
+                                Modifier.semantics {
+                                    // TODO(b/496338253): Remove this modifier once bug where
+                                    //  tooltip text is not announced by a11y screen readers is
+                                    // resolved.
+                                    liveRegion = LiveRegionMode.Assertive
+                                    paneTitle = "Favorite"
+                                }
+                        ) {
+                            Text("Favorite")
+                        }
+                    },
                     state = rememberTooltipState(),
                 ) {
                     Tab(
@@ -222,7 +255,7 @@ fun SecondaryIconTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun TextAndIconTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titlesAndIcons =
         listOf(
             "Tab 1" to Icons.Filled.Favorite,
@@ -252,7 +285,7 @@ fun TextAndIconTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun LeadingIconTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titlesAndIcons =
         listOf(
             "Tab" to Icons.Filled.Favorite,
@@ -286,7 +319,7 @@ fun LeadingIconTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun ScrollingPrimaryTextTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles =
         listOf(
             "Tab 1",
@@ -318,7 +351,7 @@ fun ScrollingPrimaryTextTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun ScrollingSecondaryTextTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles =
         listOf(
             "Tab 1",
@@ -350,7 +383,7 @@ fun ScrollingSecondaryTextTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun ScrollingTextTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles =
         listOf(
             "Tab 1",
@@ -383,7 +416,7 @@ fun ScrollingTextTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun FancyTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3")
     Column {
         SecondaryTabRow(selectedTabIndex = state) {
@@ -404,7 +437,7 @@ fun FancyTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun FancyIndicatorTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3")
 
     Column {
@@ -434,7 +467,7 @@ fun FancyIndicatorTabs() {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun FancyIndicatorContainerTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles = listOf("Tab 1", "Tab 2", "Tab 3")
 
     Column {
@@ -470,7 +503,10 @@ fun FancyIndicator(color: Color, modifier: Modifier = Modifier) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Sampled
 @Composable
-fun TabIndicatorScope.FancyAnimatedIndicatorWithModifier(index: Int) {
+fun TabIndicatorScope.FancyAnimatedIndicatorWithModifier(
+    index: Int,
+    isScrollable: Boolean = false,
+) {
     val colors =
         listOf(
             MaterialTheme.colorScheme.primary,
@@ -487,62 +523,65 @@ fun TabIndicatorScope.FancyAnimatedIndicatorWithModifier(index: Int) {
                 measurable: Measurable,
                 constraints: Constraints,
                 tabPositions: List<TabPosition> ->
-            val newStart = tabPositions[index].left
-            val newEnd = tabPositions[index].right
-            val startAnim =
-                startAnimatable
-                    ?: Animatable(newStart, Dp.VectorConverter).also { startAnimatable = it }
+                val newStart = tabPositions[index].left
+                val newEnd = tabPositions[index].right
+                val startAnim =
+                    startAnimatable
+                        ?: Animatable(newStart, Dp.VectorConverter).also { startAnimatable = it }
 
-            val endAnim =
-                endAnimatable
-                    ?: Animatable(newEnd, Dp.VectorConverter).also { endAnimatable = it }
+                val endAnim =
+                    endAnimatable
+                        ?: Animatable(newEnd, Dp.VectorConverter).also { endAnimatable = it }
 
-            if (endAnim.targetValue != newEnd) {
-                coroutineScope.launch {
-                    endAnim.animateTo(
-                        newEnd,
-                        animationSpec =
-                            if (endAnim.targetValue < newEnd) {
-                                spring(dampingRatio = 1f, stiffness = 1000f)
-                            } else {
-                                spring(dampingRatio = 1f, stiffness = 50f)
-                            },
+                if (endAnim.targetValue != newEnd) {
+                    coroutineScope.launch {
+                        endAnim.animateTo(
+                            newEnd,
+                            animationSpec =
+                                if (endAnim.targetValue < newEnd) {
+                                    spring(dampingRatio = 1f, stiffness = 1000f)
+                                } else {
+                                    spring(dampingRatio = 1f, stiffness = 50f)
+                                },
+                        )
+                    }
+                }
+
+                if (startAnim.targetValue != newStart) {
+                    coroutineScope.launch {
+                        startAnim.animateTo(
+                            newStart,
+                            animationSpec =
+                                // Handle directionality here, if we are moving to the right, we
+                                // want the right side of the indicator to move faster, if we are
+                                // moving to the left, we want the left side to move faster.
+                                if (startAnim.targetValue < newStart) {
+                                    spring(dampingRatio = 1f, stiffness = 50f)
+                                } else {
+                                    spring(dampingRatio = 1f, stiffness = 1000f)
+                                },
+                        )
+                    }
+                }
+
+                val indicatorEnd = endAnim.value.roundToPx()
+                val indicatorStart = startAnim.value.roundToPx()
+
+                // Apply an offset from the start to correctly position the indicator around the tab
+                val placeable =
+                    measurable.measure(
+                        constraints.copy(
+                            maxWidth = indicatorEnd - indicatorStart,
+                            minWidth = indicatorEnd - indicatorStart,
+                        )
                     )
+                layout(constraints.maxWidth, constraints.maxHeight) {
+                    val contentWidth = tabPositions[index].contentWidth.roundToPx()
+                    val tabWidth = tabPositions[index].width.roundToPx()
+                    val relativeOffset = if (isScrollable) (tabWidth - contentWidth) / 2 else 0
+                    placeable.place(indicatorStart - relativeOffset, 0)
                 }
             }
-
-            if (startAnim.targetValue != newStart) {
-                coroutineScope.launch {
-                    startAnim.animateTo(
-                        newStart,
-                        animationSpec =
-                            // Handle directionality here, if we are moving to the right, we
-                            // want the right side of the indicator to move faster, if we are
-                            // moving to the left, we want the left side to move faster.
-                            if (startAnim.targetValue < newStart) {
-                                spring(dampingRatio = 1f, stiffness = 50f)
-                            } else {
-                                spring(dampingRatio = 1f, stiffness = 1000f)
-                            },
-                    )
-                }
-            }
-
-            val indicatorEnd = endAnim.value.roundToPx()
-            val indicatorStart = startAnim.value.roundToPx()
-
-            // Apply an offset from the start to correctly position the indicator around the tab
-            val placeable =
-                measurable.measure(
-                    constraints.copy(
-                        maxWidth = indicatorEnd - indicatorStart,
-                        minWidth = indicatorEnd - indicatorStart,
-                    )
-                )
-            layout(constraints.maxWidth, constraints.maxHeight) {
-                placeable.place(indicatorStart, 0)
-            }
-        }
             .padding(5.dp)
             .fillMaxSize()
             .drawWithContent {
@@ -559,7 +598,7 @@ fun TabIndicatorScope.FancyAnimatedIndicatorWithModifier(index: Int) {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun ScrollingFancyIndicatorContainerTabs() {
-    var state by remember { mutableStateOf(0) }
+    var state by rememberSaveable { mutableStateOf(0) }
     val titles =
         listOf(
             "Tab 1",
@@ -577,7 +616,7 @@ fun ScrollingFancyIndicatorContainerTabs() {
     Column {
         SecondaryScrollableTabRow(
             selectedTabIndex = state,
-            indicator = { FancyAnimatedIndicatorWithModifier(state) },
+            indicator = { FancyAnimatedIndicatorWithModifier(state, isScrollable = true) },
         ) {
             titles.forEachIndexed { index, title ->
                 Tab(selected = state == index, onClick = { state = index }, text = { Text(title) })

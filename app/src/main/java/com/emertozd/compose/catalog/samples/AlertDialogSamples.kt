@@ -16,10 +16,12 @@
 
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
@@ -28,7 +30,6 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -41,7 +42,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.library.Sampled
 
 @Preview
 @Sampled
@@ -87,12 +87,18 @@ fun AlertDialogWithIconSample() {
                 // onDismissRequest.
                 openDialog.value = false
             },
-            icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
+            icon = {
+                Icon(
+                    Icons.Filled.Favorite,
+                    contentDescription = null,
+                    modifier = Modifier.size(AlertDialogDefaults.IconSize),
+                )
+            },
             title = { Text(text = "Title") },
             text = {
                 Text(
                     "This area typically contains the supportive text " +
-                            "which presents the details regarding the Dialog's purpose."
+                        "which presents the details regarding the Dialog's purpose."
                 )
             },
             confirmButton = {
@@ -107,7 +113,6 @@ fun AlertDialogWithIconSample() {
 
 @Preview
 @Sampled
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BasicAlertDialogSample() {
     val openDialog = remember { mutableStateOf(true) }
@@ -132,7 +137,7 @@ fun BasicAlertDialogSample() {
                     Text(
                         text =
                             "This area typically contains the supportive text " +
-                                    "which presents the details regarding the Dialog's purpose."
+                                "which presents the details regarding the Dialog's purpose."
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                     TextButton(

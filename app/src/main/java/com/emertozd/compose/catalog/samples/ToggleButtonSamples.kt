@@ -21,83 +21,59 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Edit
-import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ButtonShapes
 import androidx.compose.material3.ElevatedToggleButton
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.FilledTonalToggleButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedToggleButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleButton
 import androidx.compose.material3.ToggleButtonDefaults
-import androidx.compose.material3.ToggleButtonShapes
-import androidx.compose.material3.TonalToggleButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.emertozd.compose.catalog.library.Sampled
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Preview
 @Sampled
 @Composable
 fun ToggleButtonSample() {
-    var checked by remember { mutableStateOf(false) }
+    var checked by rememberSaveable { mutableStateOf(false) }
     ToggleButton(checked = checked, onCheckedChange = { checked = it }) { Text("Button") }
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
-@Preview
-@Sampled
-@Composable
-fun SquareToggleButtonSample() {
-    var checked by remember { mutableStateOf(false) }
-    val shapes =
-        ToggleButtonShapes(
-            shape = ToggleButtonDefaults.squareShape,
-            pressedShape = ToggleButtonDefaults.pressedShape,
-            checkedShape = ToggleButtonDefaults.roundShape,
-        )
-    ToggleButton(checked = checked, onCheckedChange = { checked = it }, shapes = shapes) {
-        Text("Button")
-    }
-}
-
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Preview
 @Sampled
 @Composable
 fun ElevatedToggleButtonSample() {
-    var checked by remember { mutableStateOf(false) }
+    var checked by rememberSaveable { mutableStateOf(false) }
     ElevatedToggleButton(checked = checked, onCheckedChange = { checked = it }) {
         Text("Elevated Button")
     }
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Preview
 @Sampled
 @Composable
-fun TonalToggleButtonSample() {
-    var checked by remember { mutableStateOf(false) }
-    TonalToggleButton(checked = checked, onCheckedChange = { checked = it }) {
+fun FilledTonalToggleButtonSample() {
+    var checked by rememberSaveable { mutableStateOf(false) }
+    FilledTonalToggleButton(checked = checked, onCheckedChange = { checked = it }) {
         Text("Tonal Button")
     }
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Preview
 @Sampled
 @Composable
 fun OutlinedToggleButtonSample() {
-    var checked by remember { mutableStateOf(false) }
+    var checked by rememberSaveable { mutableStateOf(false) }
     OutlinedToggleButton(checked = checked, onCheckedChange = { checked = it }) {
         Text("Outlined Button")
     }
@@ -215,4 +191,3 @@ fun XLargeToggleButtonWithIconSample() {
         Text("Label", style = ButtonDefaults.textStyleFor(size))
     }
 }
-

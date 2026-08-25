@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,10 +16,12 @@
 
 <resources>
 
-    <string name="compose_material_catalog">Compose Material Catalog</string>
-    <string name="specifications">Specifications</string>
-
     <string name="compose_material_3">Compose Material 3</string>
+
+    <string name="back_button">Back</string>
+    <string name="favorite_button">Pin screen</string>
+    <string name="change_theme_button">Change theme</string>
+    <string name="more_menu_button">External links</string>
 
     <string name="description">Description</string>
     <string name="experimental">Experimental</string>
@@ -40,20 +41,23 @@
     <string name="color_mode" description=" Material 3 Color Mode. [CHAR_LIMIT=NONE]">Color mode</string>
     <string name="font_scale" description="Font scale. [CHAR_LIMIT=NONE]">Font scale</string>
     <string name="text_direction" description="Text direction. [CHAR_LIMIT=NONE]">Text direction</string>
+    <string name="focus_indication_style" description="Focus indication style. [CHAR_LIMIT=NONE]">Focus indication style</string>
+
     <string name="reset_all" description="Reset all. [CHAR_LIMIT=NONE]">Reset all</string>
+
+    <string name="mark_expressive_components" description="Mark expressive components with an expressive banner. [CHAR_LIMIT=NONE]">Mark expressive components</string>
+    <string name="display_only_expressive_components" description="Display only expressive components. [CHAR_LIMIT=NONE]">Show only expressive components</string>
+    <string name="expressive_banner" description="Expressive banner. [CHAR_LIMIT=NONE]">Expr</string>
 
     <string name="scale">%.2f</string>
 
 
+    <!-- Strings kept from the pre-sync catalog (used by held-back files and the spec shell) -->
+    <string name="compose_material_catalog">Compose Material Catalog</string>
+    <string name="specifications">Specifications</string>
     <string name="carousel_image_1_description">A racecar</string>
     <string name="carousel_image_2_description">Dotonburi, Osaka</string>
     <string name="carousel_image_3_description">The Grand Canyon</string>
     <string name="carousel_image_4_description">A rock structure with its reflection mirrored over the sea</string>
     <string name="carousel_image_5_description">A car on a long stretch of desert road</string>
-
-    <string name="back_button">Back</string>
-    <string name="favorite_button">Pin screen</string>
-    <string name="change_theme_button">Change theme</string>
-    <string name="more_menu_button">External links</string>
-
 </resources>

@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:Suppress("COMPOSABLE_FUNCTION_REFERENCE")
-
 package com.emertozd.compose.catalog.library.model
 
 import androidx.compose.foundation.layout.Box
@@ -38,6 +36,7 @@ import com.emertozd.compose.catalog.samples.BottomAppBarWithFAB
 import com.emertozd.compose.catalog.samples.BottomAppBarWithOverflow
 import com.emertozd.compose.catalog.samples.BottomSheetScaffoldNestedScrollSample
 import com.emertozd.compose.catalog.samples.ButtonGroupSample
+import com.emertozd.compose.catalog.samples.ButtonGroupWithCustomItemSample
 import com.emertozd.compose.catalog.samples.ButtonSample
 import com.emertozd.compose.catalog.samples.ButtonWithAnimatedShapeSample
 import com.emertozd.compose.catalog.samples.ButtonWithIconSample
@@ -58,6 +57,7 @@ import com.emertozd.compose.catalog.samples.ClickableElevatedCardSample
 import com.emertozd.compose.catalog.samples.ClickableListItemSample
 import com.emertozd.compose.catalog.samples.ClickableListItemWithClickableChildSample
 import com.emertozd.compose.catalog.samples.ClickableOutlinedCardSample
+import com.emertozd.compose.catalog.samples.ClickableSurfaceSample
 import com.emertozd.compose.catalog.samples.ContainedLoadingIndicatorSample
 import com.emertozd.compose.catalog.samples.CustomTwoRowsTopAppBar
 import com.emertozd.compose.catalog.samples.DateInputSample
@@ -71,12 +71,14 @@ import com.emertozd.compose.catalog.samples.DeterminateLoadingIndicatorSample
 import com.emertozd.compose.catalog.samples.DismissibleModalWideNavigationRailSample
 import com.emertozd.compose.catalog.samples.DismissibleNavigationDrawerSample
 import com.emertozd.compose.catalog.samples.DockedSearchBarScaffoldSample
+import com.emertozd.compose.catalog.samples.DynamicColorRippleSample
 import com.emertozd.compose.catalog.samples.EditableExposedDropdownMenuSample
 import com.emertozd.compose.catalog.samples.ElevatedAssistChipSample
 import com.emertozd.compose.catalog.samples.ElevatedButtonSample
 import com.emertozd.compose.catalog.samples.ElevatedButtonWithAnimatedShapeSample
 import com.emertozd.compose.catalog.samples.ElevatedCardSample
 import com.emertozd.compose.catalog.samples.ElevatedFilterChipSample
+import com.emertozd.compose.catalog.samples.ElevatedFilterChipWithCornerMorphingSample
 import com.emertozd.compose.catalog.samples.ElevatedSplitButtonSample
 import com.emertozd.compose.catalog.samples.ElevatedSuggestionChipSample
 import com.emertozd.compose.catalog.samples.ElevatedToggleButtonSample
@@ -88,13 +90,27 @@ import com.emertozd.compose.catalog.samples.ExitAlwaysBottomAppBarFixedVibrant
 import com.emertozd.compose.catalog.samples.ExitAlwaysBottomAppBarSpacedAround
 import com.emertozd.compose.catalog.samples.ExitAlwaysBottomAppBarSpacedBetween
 import com.emertozd.compose.catalog.samples.ExitAlwaysBottomAppBarSpacedEvenly
-import com.emertozd.compose.catalog.samples.ExitUntilCollapsedCenterAlignedLargeFlexibleTopAppBar
-import com.emertozd.compose.catalog.samples.ExitUntilCollapsedCenterAlignedMediumFlexibleTopAppBar
+import com.emertozd.compose.catalog.samples.ExitUntilCollapsedLargeFlexibleTopAppBar
 import com.emertozd.compose.catalog.samples.ExitUntilCollapsedLargeTopAppBar
+import com.emertozd.compose.catalog.samples.ExitUntilCollapsedMediumFlexibleTopAppBar
 import com.emertozd.compose.catalog.samples.ExitUntilCollapsedMediumTopAppBar
 import com.emertozd.compose.catalog.samples.ExpandableHorizontalFloatingToolbarSample
 import com.emertozd.compose.catalog.samples.ExpandableVerticalFloatingToolbarSample
 import com.emertozd.compose.catalog.samples.ExposedDropdownMenuSample
+import com.emertozd.compose.catalog.samples.ExpressiveOutlinedPasswordTextField
+import com.emertozd.compose.catalog.samples.ExpressiveOutlinedTextFieldSample
+import com.emertozd.compose.catalog.samples.ExpressiveOutlinedTextFieldWithErrorState
+import com.emertozd.compose.catalog.samples.ExpressiveOutlinedTextFieldWithIcons
+import com.emertozd.compose.catalog.samples.ExpressiveOutlinedTextFieldWithPlaceholder
+import com.emertozd.compose.catalog.samples.ExpressiveOutlinedTextFieldWithPrefixAndSuffix
+import com.emertozd.compose.catalog.samples.ExpressiveOutlinedTextFieldWithSupportingText
+import com.emertozd.compose.catalog.samples.ExpressivePasswordTextField
+import com.emertozd.compose.catalog.samples.ExpressiveTextFieldSample
+import com.emertozd.compose.catalog.samples.ExpressiveTextFieldWithErrorState
+import com.emertozd.compose.catalog.samples.ExpressiveTextFieldWithIcons
+import com.emertozd.compose.catalog.samples.ExpressiveTextFieldWithPlaceholder
+import com.emertozd.compose.catalog.samples.ExpressiveTextFieldWithPrefixAndSuffix
+import com.emertozd.compose.catalog.samples.ExpressiveTextFieldWithSupportingText
 import com.emertozd.compose.catalog.samples.ExtendedFloatingActionButtonSample
 import com.emertozd.compose.catalog.samples.ExtendedFloatingActionButtonTextSample
 import com.emertozd.compose.catalog.samples.ExtraLargeFilledSplitButtonSample
@@ -110,14 +126,15 @@ import com.emertozd.compose.catalog.samples.FilledTonalButtonSample
 import com.emertozd.compose.catalog.samples.FilledTonalButtonWithAnimatedShapeSample
 import com.emertozd.compose.catalog.samples.FilledTonalIconButtonSample
 import com.emertozd.compose.catalog.samples.FilledTonalIconToggleButtonSample
+import com.emertozd.compose.catalog.samples.FilledTonalToggleButtonSample
 import com.emertozd.compose.catalog.samples.FilterChipSample
+import com.emertozd.compose.catalog.samples.FilterChipWithCornerMorphingSample
 import com.emertozd.compose.catalog.samples.FilterChipWithCustomSpacingSample
 import com.emertozd.compose.catalog.samples.FilterChipWithLeadingIconSample
 import com.emertozd.compose.catalog.samples.FilterChipWithTrailingIconSample
 import com.emertozd.compose.catalog.samples.FloatingActionButtonMenuSample
 import com.emertozd.compose.catalog.samples.FloatingActionButtonSample
 import com.emertozd.compose.catalog.samples.FullScreenSearchBarScaffoldSample
-import com.emertozd.compose.catalog.samples.GroupedMenuSample
 import com.emertozd.compose.catalog.samples.HorizontalCenteredHeroCarouselSample
 import com.emertozd.compose.catalog.samples.HorizontalFloatingToolbarAsScaffoldFabSample
 import com.emertozd.compose.catalog.samples.HorizontalFloatingToolbarWithFabSample
@@ -131,15 +148,22 @@ import com.emertozd.compose.catalog.samples.IndeterminateLinearProgressIndicator
 import com.emertozd.compose.catalog.samples.IndeterminateLinearWavyProgressIndicatorSample
 import com.emertozd.compose.catalog.samples.InputChipSample
 import com.emertozd.compose.catalog.samples.InputChipWithAvatarSample
+import com.emertozd.compose.catalog.samples.InputChipWithCornerMorphingSample
+import com.emertozd.compose.catalog.samples.InsetFocusRingRippleSample
 import com.emertozd.compose.catalog.samples.LargeAnimatedExtendedFloatingActionButtonSample
 import com.emertozd.compose.catalog.samples.LargeButtonWithIconSample
 import com.emertozd.compose.catalog.samples.LargeExtendedFloatingActionButtonSample
 import com.emertozd.compose.catalog.samples.LargeExtendedFloatingActionButtonTextSample
 import com.emertozd.compose.catalog.samples.LargeFilledSplitButtonSample
+import com.emertozd.compose.catalog.samples.LargeFlexibleTopAppBarWithSubtitleAndCenterAligned
 import com.emertozd.compose.catalog.samples.LargeFloatingActionButtonSample
 import com.emertozd.compose.catalog.samples.LargeRoundUniformOutlinedIconButtonSample
 import com.emertozd.compose.catalog.samples.LargeToggleButtonWithIconSample
 import com.emertozd.compose.catalog.samples.LeadingIconTabs
+import com.emertozd.compose.catalog.samples.LegacyOneLineListItem
+import com.emertozd.compose.catalog.samples.LegacyThreeLineListItemWithExtendedSupporting
+import com.emertozd.compose.catalog.samples.LegacyThreeLineListItemWithOverlineAndSupporting
+import com.emertozd.compose.catalog.samples.LegacyTwoLineListItem
 import com.emertozd.compose.catalog.samples.LinearProgressIndicatorSample
 import com.emertozd.compose.catalog.samples.LinearWavyProgressIndicatorSample
 import com.emertozd.compose.catalog.samples.ListDetailPaneScaffoldSample
@@ -155,6 +179,7 @@ import com.emertozd.compose.catalog.samples.MediumButtonWithIconSample
 import com.emertozd.compose.catalog.samples.MediumExtendedFloatingActionButtonSample
 import com.emertozd.compose.catalog.samples.MediumExtendedFloatingActionButtonTextSample
 import com.emertozd.compose.catalog.samples.MediumFilledSplitButtonSample
+import com.emertozd.compose.catalog.samples.MediumFlexibleTopAppBarWithSubtitleAndCenterAligned
 import com.emertozd.compose.catalog.samples.MediumFloatingActionButtonSample
 import com.emertozd.compose.catalog.samples.MediumRoundWideIconButtonSample
 import com.emertozd.compose.catalog.samples.MediumToggleButtonWithIconSample
@@ -165,6 +190,7 @@ import com.emertozd.compose.catalog.samples.ModalNavigationDrawerSample
 import com.emertozd.compose.catalog.samples.ModalWideNavigationRailSample
 import com.emertozd.compose.catalog.samples.MultiAspectCarouselLazyRowSample
 import com.emertozd.compose.catalog.samples.MultiAutocompleteExposedDropdownMenuSample
+import com.emertozd.compose.catalog.samples.MultiSelectConnectedButtonGroupSample
 import com.emertozd.compose.catalog.samples.MultiSelectConnectedButtonGroupWithFlowLayoutSample
 import com.emertozd.compose.catalog.samples.MultiSelectionListItemSample
 import com.emertozd.compose.catalog.samples.MultiSelectionSegmentedListItemSample
@@ -174,12 +200,14 @@ import com.emertozd.compose.catalog.samples.NavigationRailBottomAlignSample
 import com.emertozd.compose.catalog.samples.NavigationRailSample
 import com.emertozd.compose.catalog.samples.NavigationSuiteScaffoldCustomConfigSample
 import com.emertozd.compose.catalog.samples.NavigationSuiteScaffoldSample
-import com.emertozd.compose.catalog.samples.OneLineListItem
+import com.emertozd.compose.catalog.samples.NonInteractiveScrollbarWithLazyColumnSample
+import com.emertozd.compose.catalog.samples.NonInteractiveScrollbarWithVerticalScrollSample
 import com.emertozd.compose.catalog.samples.OutlinedButtonSample
 import com.emertozd.compose.catalog.samples.OutlinedButtonWithAnimatedShapeSample
 import com.emertozd.compose.catalog.samples.OutlinedCardSample
 import com.emertozd.compose.catalog.samples.OutlinedIconButtonSample
 import com.emertozd.compose.catalog.samples.OutlinedIconToggleButtonSample
+import com.emertozd.compose.catalog.samples.OutlinedIconToggleButtonWithAnimatedShapeSample
 import com.emertozd.compose.catalog.samples.OutlinedSplitButtonSample
 import com.emertozd.compose.catalog.samples.OutlinedTextFieldWithInitialValueAndSelection
 import com.emertozd.compose.catalog.samples.OutlinedToggleButtonSample
@@ -210,11 +238,13 @@ import com.emertozd.compose.catalog.samples.PullToRefreshWithLoadingIndicatorSam
 import com.emertozd.compose.catalog.samples.RadioButtonSample
 import com.emertozd.compose.catalog.samples.RadioGroupSample
 import com.emertozd.compose.catalog.samples.RangeSliderSample
-import com.emertozd.compose.catalog.samples.RangeSliderWithCustomComponents
 import com.emertozd.compose.catalog.samples.RichTooltipSample
 import com.emertozd.compose.catalog.samples.RichTooltipWithCaretSample
 import com.emertozd.compose.catalog.samples.RichTooltipWithCustomCaretSample
 import com.emertozd.compose.catalog.samples.RichTooltipWithManualInvocationSample
+import com.emertozd.compose.catalog.samples.RippleConfigurationInsetFocusRingSample
+import com.emertozd.compose.catalog.samples.RippleConfigurationOpacitySample
+import com.emertozd.compose.catalog.samples.RippleSample
 import com.emertozd.compose.catalog.samples.ScaffoldWithCoroutinesSnackbar
 import com.emertozd.compose.catalog.samples.ScaffoldWithCustomSnackbar
 import com.emertozd.compose.catalog.samples.ScaffoldWithIndefiniteSnackbar
@@ -230,18 +260,21 @@ import com.emertozd.compose.catalog.samples.SecondaryTextTabs
 import com.emertozd.compose.catalog.samples.SegmentedButtonMultiSelectSample
 import com.emertozd.compose.catalog.samples.SegmentedButtonSingleSelectSample
 import com.emertozd.compose.catalog.samples.SegmentedListItemWithExpansionSample
+import com.emertozd.compose.catalog.samples.SegmentedListItems
+import com.emertozd.compose.catalog.samples.SelectableSurfaceSample
 import com.emertozd.compose.catalog.samples.ShortNavigationBarSample
 import com.emertozd.compose.catalog.samples.ShortNavigationBarWithHorizontalItemsSample
 import com.emertozd.compose.catalog.samples.SimpleBottomAppBar
 import com.emertozd.compose.catalog.samples.SimpleBottomSheetScaffoldSample
 import com.emertozd.compose.catalog.samples.SimpleCenterAlignedTopAppBar
-import com.emertozd.compose.catalog.samples.SimpleCenterAlignedTopAppBarWithSubtitle
 import com.emertozd.compose.catalog.samples.SimpleOutlinedTextFieldSample
 import com.emertozd.compose.catalog.samples.SimpleSearchBarSample
 import com.emertozd.compose.catalog.samples.SimpleTextFieldSample
 import com.emertozd.compose.catalog.samples.SimpleTopAppBar
 import com.emertozd.compose.catalog.samples.SimpleTopAppBarWithAdaptiveActions
 import com.emertozd.compose.catalog.samples.SimpleTopAppBarWithSubtitle
+import com.emertozd.compose.catalog.samples.SimpleTopAppBarWithSubtitleAndCenterAligned
+import com.emertozd.compose.catalog.samples.SingleSelectConnectedButtonGroupSample
 import com.emertozd.compose.catalog.samples.SingleSelectConnectedButtonGroupWithFlowLayoutSample
 import com.emertozd.compose.catalog.samples.SingleSelectionListItemSample
 import com.emertozd.compose.catalog.samples.SingleSelectionSegmentedListItemSample
@@ -259,12 +292,13 @@ import com.emertozd.compose.catalog.samples.SplitButtonWithIconSample
 import com.emertozd.compose.catalog.samples.SplitButtonWithTextSample
 import com.emertozd.compose.catalog.samples.SplitButtonWithUnCheckableTrailingButtonSample
 import com.emertozd.compose.catalog.samples.SquareButtonSample
-import com.emertozd.compose.catalog.samples.SquareToggleButtonSample
+import com.emertozd.compose.catalog.samples.StandardListItems
 import com.emertozd.compose.catalog.samples.StepRangeSliderSample
 import com.emertozd.compose.catalog.samples.StepsSliderSample
 import com.emertozd.compose.catalog.samples.SuggestionChipSample
 import com.emertozd.compose.catalog.samples.SupportingPaneScaffoldSample
 import com.emertozd.compose.catalog.samples.SupportingPaneScaffoldSampleWithExtraPaneLevitatedAsBottomSheet
+import com.emertozd.compose.catalog.samples.SurfaceSample
 import com.emertozd.compose.catalog.samples.SwipeToDismissListItems
 import com.emertozd.compose.catalog.samples.SwitchSample
 import com.emertozd.compose.catalog.samples.SwitchWithThumbIconSample
@@ -280,23 +314,20 @@ import com.emertozd.compose.catalog.samples.TextFieldWithPlaceholder
 import com.emertozd.compose.catalog.samples.TextFieldWithPrefixAndSuffix
 import com.emertozd.compose.catalog.samples.TextFieldWithSupportingText
 import com.emertozd.compose.catalog.samples.TextFieldWithTransformations
-import com.emertozd.compose.catalog.samples.ThreeLineListItemWithExtendedSupporting
-import com.emertozd.compose.catalog.samples.ThreeLineListItemWithOverlineAndSupporting
 import com.emertozd.compose.catalog.samples.TimeInputSample
 import com.emertozd.compose.catalog.samples.TimePickerSample
 import com.emertozd.compose.catalog.samples.TimePickerSwitchableSample
 import com.emertozd.compose.catalog.samples.TintedIconButtonSample
 import com.emertozd.compose.catalog.samples.ToggleButtonSample
 import com.emertozd.compose.catalog.samples.ToggleButtonWithIconSample
+import com.emertozd.compose.catalog.samples.ToggleableSurfaceSample
 import com.emertozd.compose.catalog.samples.TonalSplitButtonSample
-import com.emertozd.compose.catalog.samples.TonalToggleButtonSample
 import com.emertozd.compose.catalog.samples.TriStateCheckboxRoundedStrokesSample
 import com.emertozd.compose.catalog.samples.TriStateCheckboxSample
-import com.emertozd.compose.catalog.samples.TwoLineListItem
+import com.emertozd.compose.catalog.samples.TypographyCustomFontFamilySample
+import com.emertozd.compose.catalog.samples.TypographySample
 import com.emertozd.compose.catalog.samples.VerticalButtonGroupSample
-import com.emertozd.compose.catalog.samples.VerticalCenteredSliderSample
 import com.emertozd.compose.catalog.samples.VerticalFloatingToolbarWithFabSample
-import com.emertozd.compose.catalog.samples.VerticalSliderSample
 import com.emertozd.compose.catalog.samples.WideNavigationRailArrangementsSample
 import com.emertozd.compose.catalog.samples.WideNavigationRailCollapsedSample
 import com.emertozd.compose.catalog.samples.WideNavigationRailExpandedSample
@@ -599,6 +630,30 @@ val ButtonGroupsExamples =
         ) {
             VerticalButtonGroupSample()
         },
+        Example(
+            name = "ButtonGroupWithCustomItemSample",
+            description = ButtonGroupsExampleDescription,
+            sourceUrl = ButtonGroupsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            ButtonGroupWithCustomItemSample()
+        },
+        Example(
+            name = "SingleSelectConnectedButtonGroupSample",
+            description = ButtonGroupsExampleDescription,
+            sourceUrl = ButtonGroupsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            SingleSelectConnectedButtonGroupSample()
+        },
+        Example(
+            name = "MultiSelectConnectedButtonGroupSample",
+            description = ButtonGroupsExampleDescription,
+            sourceUrl = ButtonGroupsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            MultiSelectConnectedButtonGroupSample()
+        },
     )
 
 private const val CardsExampleDescription = "Cards examples"
@@ -863,6 +918,30 @@ val ChipsExamples =
         ) {
             ChipGroupReflowSample()
         },
+        Example(
+            name = "FilterChipWithCornerMorphingSample",
+            description = ChipsExampleDescription,
+            sourceUrl = ChipsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            FilterChipWithCornerMorphingSample()
+        },
+        Example(
+            name = "ElevatedFilterChipWithCornerMorphingSample",
+            description = ChipsExampleDescription,
+            sourceUrl = ChipsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            ElevatedFilterChipWithCornerMorphingSample()
+        },
+        Example(
+            name = "InputChipWithCornerMorphingSample",
+            description = ChipsExampleDescription,
+            sourceUrl = ChipsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            InputChipWithCornerMorphingSample()
+        },
     )
 
 private const val DatePickerExampleDescription = "Date picker examples"
@@ -1056,14 +1135,6 @@ val TopAppBarExamples =
             SimpleCenterAlignedTopAppBar()
         },
         Example(
-            name = "SimpleCenterAlignedTopAppBarWithSubtitle",
-            description = TopAppBarExampleDescription,
-            sourceUrl = TopAppBarExampleSourceUrl,
-            isExpressive = true,
-        ) {
-            SimpleCenterAlignedTopAppBarWithSubtitle()
-        },
-        Example(
             name = "PinnedTopAppBar",
             description = TopAppBarExampleDescription,
             sourceUrl = TopAppBarExampleSourceUrl,
@@ -1112,14 +1183,6 @@ val TopAppBarExamples =
             ExitUntilCollapsedMediumTopAppBar()
         },
         Example(
-            name = "ExitUntilCollapsedCenterAlignedMediumFlexibleTopAppBar with subtitle",
-            description = TopAppBarExampleDescription,
-            sourceUrl = TopAppBarExampleSourceUrl,
-            isExpressive = false,
-        ) {
-            ExitUntilCollapsedCenterAlignedMediumFlexibleTopAppBar()
-        },
-        Example(
             name = "ExitUntilCollapsedLargeTopAppBar",
             description = TopAppBarExampleDescription,
             sourceUrl = TopAppBarExampleSourceUrl,
@@ -1128,20 +1191,74 @@ val TopAppBarExamples =
             ExitUntilCollapsedLargeTopAppBar()
         },
         Example(
-            name = "ExitUntilCollapsedCenterAlignedLargeFlexibleTopAppBar with subtitle",
-            description = TopAppBarExampleDescription,
-            sourceUrl = TopAppBarExampleSourceUrl,
-            isExpressive = true,
-        ) {
-            ExitUntilCollapsedCenterAlignedLargeFlexibleTopAppBar()
-        },
-        Example(
             name = "CustomTwoRowsTopAppBar",
             description = TopAppBarExampleDescription,
             sourceUrl = TopAppBarExampleSourceUrl,
             isExpressive = true,
         ) {
             CustomTwoRowsTopAppBar()
+        },
+        Example(
+            name = "SimpleTopAppBarWithSubtitleAndCenterAligned",
+            description = TopAppBarExampleDescription,
+            sourceUrl = TopAppBarExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            SimpleTopAppBarWithSubtitleAndCenterAligned()
+        },
+        Example(
+            name = "ExitUntilCollapsedMediumFlexibleTopAppBar",
+            description = TopAppBarExampleDescription,
+            sourceUrl = TopAppBarExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            ExitUntilCollapsedMediumFlexibleTopAppBar()
+        },
+        Example(
+            name = "MediumFlexibleTopAppBarWithSubtitleAndCenterAligned",
+            description = TopAppBarExampleDescription,
+            sourceUrl = TopAppBarExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            MediumFlexibleTopAppBarWithSubtitleAndCenterAligned()
+        },
+        Example(
+            name = "ExitUntilCollapsedLargeFlexibleTopAppBar",
+            description = TopAppBarExampleDescription,
+            sourceUrl = TopAppBarExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            ExitUntilCollapsedLargeFlexibleTopAppBar()
+        },
+        Example(
+            name = "LargeFlexibleTopAppBarWithSubtitleAndCenterAligned",
+            description = TopAppBarExampleDescription,
+            sourceUrl = TopAppBarExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            LargeFlexibleTopAppBarWithSubtitleAndCenterAligned()
+        },
+    )
+
+private const val TypographyExampleDescription = "Typography examples"
+private const val TypographyExampleSourceUrl = "$SampleSourceUrl/TypographySamples.kt"
+val TypographyExamples =
+    listOf(
+        Example(
+            name = "TypographySample",
+            description = TypographyExampleDescription,
+            sourceUrl = TypographyExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            TypographySample()
+        },
+        Example(
+            name = "TypographyCustomFontFamilySample",
+            description = TypographyExampleDescription,
+            sourceUrl = TypographyExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            TypographyCustomFontFamilySample()
         },
     )
 
@@ -1409,38 +1526,6 @@ private const val ListsExampleSourceUrl = "$SampleSourceUrl/ListSamples.kt"
 val ListsExamples =
     listOf(
         Example(
-            name = "OneLineListItem",
-            description = ListsExampleDescription,
-            sourceUrl = ListsExampleSourceUrl,
-            isExpressive = false,
-        ) {
-            OneLineListItem()
-        },
-        Example(
-            name = "TwoLineListItem",
-            description = ListsExampleDescription,
-            sourceUrl = ListsExampleSourceUrl,
-            isExpressive = false,
-        ) {
-            TwoLineListItem()
-        },
-        Example(
-            name = "ThreeLineListItemWithOverlineAndSupporting",
-            description = ListsExampleDescription,
-            sourceUrl = ListsExampleSourceUrl,
-            isExpressive = false,
-        ) {
-            ThreeLineListItemWithOverlineAndSupporting()
-        },
-        Example(
-            name = "ThreeLineListItemWithExtendedSupporting",
-            description = ListsExampleDescription,
-            sourceUrl = ListsExampleSourceUrl,
-            isExpressive = false,
-        ) {
-            ThreeLineListItemWithExtendedSupporting()
-        },
-        Example(
             name = "ClickableListItemSample",
             description = ListsExampleDescription,
             sourceUrl = ListsExampleSourceUrl,
@@ -1503,6 +1588,54 @@ val ListsExamples =
             isExpressive = true,
         ) {
             SegmentedListItemWithExpansionSample()
+        },
+        Example(
+            name = "StandardListItems",
+            description = ListsExampleDescription,
+            sourceUrl = ListsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            StandardListItems()
+        },
+        Example(
+            name = "SegmentedListItems",
+            description = ListsExampleDescription,
+            sourceUrl = ListsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            SegmentedListItems()
+        },
+        Example(
+            name = "LegacyOneLineListItem",
+            description = ListsExampleDescription,
+            sourceUrl = ListsExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            LegacyOneLineListItem()
+        },
+        Example(
+            name = "LegacyTwoLineListItem",
+            description = ListsExampleDescription,
+            sourceUrl = ListsExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            LegacyTwoLineListItem()
+        },
+        Example(
+            name = "LegacyThreeLineListItemWithOverlineAndSupporting",
+            description = ListsExampleDescription,
+            sourceUrl = ListsExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            LegacyThreeLineListItemWithOverlineAndSupporting()
+        },
+        Example(
+            name = "LegacyThreeLineListItemWithExtendedSupporting",
+            description = ListsExampleDescription,
+            sourceUrl = ListsExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            LegacyThreeLineListItemWithExtendedSupporting()
         },
     )
 
@@ -1606,6 +1739,14 @@ val IconButtonExamples =
         ) {
             LargeRoundUniformOutlinedIconButtonSample()
         },
+        Example(
+            name = "OutlinedIconToggleButtonWithAnimatedShapeSample",
+            description = IconButtonExampleDescription,
+            sourceUrl = IconButtonExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            OutlinedIconToggleButtonWithAnimatedShapeSample()
+        },
     )
 
 private const val LoadingIndicatorsExampleDescription = "Loading indicators examples"
@@ -1666,14 +1807,6 @@ val MenusExamples =
             isExpressive = false,
         ) {
             MenuSample()
-        },
-        Example(
-            name = "GroupedMenuSample",
-            description = MenusExampleDescription,
-            sourceUrl = MenusExampleSourceUrl,
-            isExpressive = true,
-        ) {
-            GroupedMenuSample()
         },
         Example(
             name = "MenuWithScrollStateSample",
@@ -2074,28 +2207,12 @@ val ToggleButtonsExamples =
             ToggleButtonSample()
         },
         Example(
-            name = "RoundToggleButtonSample",
-            description = ToggleButtonsExampleDescription,
-            sourceUrl = ToggleButtonsExampleSourceUrl,
-            isExpressive = true,
-        ) {
-            SquareToggleButtonSample()
-        },
-        Example(
             name = "ElevatedToggleButtonSample",
             description = ToggleButtonsExampleDescription,
             sourceUrl = ToggleButtonsExampleSourceUrl,
             isExpressive = true,
         ) {
             ElevatedToggleButtonSample()
-        },
-        Example(
-            name = "TonalToggleButtonSample",
-            description = ToggleButtonsExampleDescription,
-            sourceUrl = ToggleButtonsExampleSourceUrl,
-            isExpressive = true,
-        ) {
-            TonalToggleButtonSample()
         },
         Example(
             name = "OutlinedToggleButtonSample",
@@ -2144,6 +2261,14 @@ val ToggleButtonsExamples =
             isExpressive = true,
         ) {
             XLargeToggleButtonWithIconSample()
+        },
+        Example(
+            name = "FilledTonalToggleButtonSample",
+            description = ToggleButtonsExampleDescription,
+            sourceUrl = ToggleButtonsExampleSourceUrl,
+            isExpressive = true,
+        ) {
+            FilledTonalToggleButtonSample()
         },
     )
 
@@ -2200,22 +2325,6 @@ val SlidersExamples =
             CenteredSliderSample()
         },
         Example(
-            name = "VerticalSliderSample",
-            description = SlidersExampleDescription,
-            sourceUrl = SlidersExampleSourceUrl,
-            isExpressive = true,
-        ) {
-            VerticalSliderSample()
-        },
-        Example(
-            name = "VerticalCenteredSliderSample",
-            description = SlidersExampleDescription,
-            sourceUrl = SlidersExampleSourceUrl,
-            isExpressive = true,
-        ) {
-            VerticalCenteredSliderSample()
-        },
-        Example(
             name = "RangeSliderSample",
             description = SlidersExampleDescription,
             sourceUrl = SlidersExampleSourceUrl,
@@ -2230,14 +2339,6 @@ val SlidersExamples =
             isExpressive = false,
         ) {
             StepRangeSliderSample()
-        },
-        Example(
-            name = "RangeSliderWithCustomComponents",
-            description = SlidersExampleDescription,
-            sourceUrl = SlidersExampleSourceUrl,
-            isExpressive = false,
-        ) {
-            RangeSliderWithCustomComponents()
         },
     )
 
@@ -2659,6 +2760,118 @@ val TextFieldsExamples =
             ) {
                 TextArea()
             },
+            Example(
+                name = "ExpressiveTextFieldSample",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveTextFieldSample()
+            },
+            Example(
+                name = "ExpressiveOutlinedTextFieldSample",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveOutlinedTextFieldSample()
+            },
+            Example(
+                name = "ExpressiveTextFieldWithIcons",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveTextFieldWithIcons()
+            },
+            Example(
+                name = "ExpressiveOutlinedTextFieldWithIcons",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveOutlinedTextFieldWithIcons()
+            },
+            Example(
+                name = "ExpressiveTextFieldWithPlaceholder",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveTextFieldWithPlaceholder()
+            },
+            Example(
+                name = "ExpressiveOutlinedTextFieldWithPlaceholder",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveOutlinedTextFieldWithPlaceholder()
+            },
+            Example(
+                name = "ExpressiveTextFieldWithPrefixAndSuffix",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveTextFieldWithPrefixAndSuffix()
+            },
+            Example(
+                name = "ExpressiveOutlinedTextFieldWithPrefixAndSuffix",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveOutlinedTextFieldWithPrefixAndSuffix()
+            },
+            Example(
+                name = "ExpressiveTextFieldWithSupportingText",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveTextFieldWithSupportingText()
+            },
+            Example(
+                name = "ExpressiveOutlinedTextFieldWithSupportingText",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveOutlinedTextFieldWithSupportingText()
+            },
+            Example(
+                name = "ExpressiveTextFieldWithErrorState",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveTextFieldWithErrorState()
+            },
+            Example(
+                name = "ExpressiveOutlinedTextFieldWithErrorState",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveOutlinedTextFieldWithErrorState()
+            },
+            Example(
+                name = "ExpressivePasswordTextField",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressivePasswordTextField()
+            },
+            Example(
+                name = "ExpressiveOutlinedPasswordTextField",
+                description = TextFieldsExampleDescription,
+                sourceUrl = TextFieldsExampleSourceUrl,
+                isExpressive = true,
+            ) {
+                ExpressiveOutlinedPasswordTextField()
+            },
         )
         .map {
             // By default text field samples are minimal and don't have a `width` modifier to
@@ -2800,4 +3013,110 @@ val SwipeToDismissExamples =
         ) {
             SwipeToDismissListItems()
         }
+    )
+
+private const val RippleExampleDescription = "Ripple examples"
+private const val RippleExampleSourceUrl = "$SampleSourceUrl/RippleSamples.kt"
+val RippleExamples =
+    listOf(
+        Example(
+            name = "RippleSample",
+            description = RippleExampleDescription,
+            sourceUrl = RippleExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            RippleSample()
+        },
+        Example(
+            name = "DynamicColorRippleSample",
+            description = RippleExampleDescription,
+            sourceUrl = RippleExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            DynamicColorRippleSample()
+        },
+        Example(
+            name = "RippleConfigurationOpacitySample",
+            description = RippleExampleDescription,
+            sourceUrl = RippleExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            RippleConfigurationOpacitySample()
+        },
+        Example(
+            name = "InsetFocusRingRippleSample",
+            description = RippleExampleDescription,
+            sourceUrl = RippleExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            InsetFocusRingRippleSample()
+        },
+        Example(
+            name = "RippleConfigurationInsetFocusRingSample",
+            description = RippleExampleDescription,
+            sourceUrl = RippleExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            RippleConfigurationInsetFocusRingSample()
+        },
+    )
+
+private const val ScrollbarExampleDescription = "Scrollbar examples"
+private const val ScrollbarExampleSourceUrl = "$SampleSourceUrl/ScrollbarSamples.kt"
+val ScrollbarExamples =
+    listOf(
+        Example(
+            name = "NonInteractiveScrollbarWithLazyColumnSample",
+            description = ScrollbarExampleDescription,
+            sourceUrl = ScrollbarExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            NonInteractiveScrollbarWithLazyColumnSample()
+        },
+        Example(
+            name = "NonInteractiveScrollbarWithVerticalScrollSample",
+            description = ScrollbarExampleDescription,
+            sourceUrl = ScrollbarExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            NonInteractiveScrollbarWithVerticalScrollSample()
+        },
+    )
+
+private const val SurfaceExampleDescription = "Surface examples"
+private const val SurfaceExampleSourceUrl = "$SampleSourceUrl/SurfaceSamples.kt"
+val SurfaceExamples =
+    listOf(
+        Example(
+            name = "SurfaceSample",
+            description = SurfaceExampleDescription,
+            sourceUrl = SurfaceExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            SurfaceSample()
+        },
+        Example(
+            name = "ClickableSurfaceSample",
+            description = SurfaceExampleDescription,
+            sourceUrl = SurfaceExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            ClickableSurfaceSample()
+        },
+        Example(
+            name = "SelectableSurfaceSample",
+            description = SurfaceExampleDescription,
+            sourceUrl = SurfaceExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            SelectableSurfaceSample()
+        },
+        Example(
+            name = "ToggleableSurfaceSample",
+            description = SurfaceExampleDescription,
+            sourceUrl = SurfaceExampleSourceUrl,
+            isExpressive = false,
+        ) {
+            ToggleableSurfaceSample()
+        },
     )

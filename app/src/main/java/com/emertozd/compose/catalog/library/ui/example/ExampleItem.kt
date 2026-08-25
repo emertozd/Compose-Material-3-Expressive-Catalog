@@ -31,14 +31,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
+import com.emertozd.compose.catalog.R
 import com.emertozd.compose.catalog.library.model.Example
+import com.emertozd.compose.catalog.library.ui.common.ItemBanner
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.R
-import com.emertozd.compose.catalog.library.ui.common.ItemBanner
 
 @Composable
 fun ExampleItem(
@@ -63,7 +63,7 @@ fun ExampleItem(
             }
             if (markExpressiveComponents && example.isExpressive) {
                 ItemBanner(
-                    text = "Expr",
+                    text = stringResource(R.string.expressive_banner),
                     bannerSize = ExampleItemBannerSize,
                 )
             }

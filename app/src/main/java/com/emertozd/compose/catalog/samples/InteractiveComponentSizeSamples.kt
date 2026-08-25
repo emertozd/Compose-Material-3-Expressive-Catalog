@@ -16,6 +16,7 @@
 
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -40,7 +41,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.library.Sampled
 
 @Preview
 @Sampled
@@ -89,10 +89,10 @@ fun MinimumInteractiveComponentSizeCheckboxRowSample() {
         verticalAlignment = Alignment.CenterVertically,
         modifier =
             Modifier.toggleable(
-                value = checked,
-                onValueChange = { checked = it },
-                role = Role.Checkbox,
-            )
+                    value = checked,
+                    onValueChange = { checked = it },
+                    role = Role.Checkbox,
+                )
                 .minimumInteractiveComponentSize(),
     ) {
         // Cannot rely on Checkbox for touch target expansion because it only enforces

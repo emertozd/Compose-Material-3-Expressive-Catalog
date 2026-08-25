@@ -18,6 +18,7 @@
 
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,7 +29,7 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteItem
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
@@ -47,7 +48,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
-import com.emertozd.compose.catalog.library.Sampled
 import kotlinx.coroutines.launch
 
 @Preview
@@ -57,7 +57,7 @@ fun NavigationSuiteScaffoldSample() {
     var selectedItem by remember { mutableIntStateOf(0) }
     val navItems = listOf("Songs", "Artists", "Playlists")
     val navSuiteType =
-        NavigationSuiteScaffoldDefaults.navigationSuiteType(currentWindowAdaptiveInfo())
+        NavigationSuiteScaffoldDefaults.navigationSuiteType(currentWindowAdaptiveInfoV2())
     val state = rememberNavigationSuiteScaffoldState()
     val scope = rememberCoroutineScope()
 
@@ -89,7 +89,7 @@ fun NavigationSuiteScaffoldSample() {
                 modifier = Modifier.padding(16.dp),
                 text =
                     "Current NavigationSuiteType: $navSuiteType\n" +
-                            "Visibility: ${state.currentValue}",
+                        "Visibility: ${state.currentValue}",
                 textAlign = TextAlign.Center,
             )
             Button(onClick = { scope.launch { state.toggle() } }) {
@@ -110,10 +110,10 @@ fun NavigationSuiteScaffoldCustomConfigSample() {
     // expanded wide navigation rail in expanded width screens, and a short navigation bar in small
     // height screens.
     val navSuiteType =
-        with(currentWindowAdaptiveInfo()) {
+        with(currentWindowAdaptiveInfoV2()) {
             if (
                 windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT ||
-                windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.MEDIUM
+                    windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.MEDIUM
             ) {
                 NavigationSuiteType.WideNavigationRailCollapsed
             } else if (windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT) {
@@ -121,7 +121,7 @@ fun NavigationSuiteScaffoldCustomConfigSample() {
             } else if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.EXPANDED) {
                 NavigationSuiteType.WideNavigationRailExpanded
             } else {
-                NavigationSuiteScaffoldDefaults.navigationSuiteType(currentWindowAdaptiveInfo())
+                NavigationSuiteScaffoldDefaults.navigationSuiteType(currentWindowAdaptiveInfoV2())
             }
         }
     val state = rememberNavigationSuiteScaffoldState()
@@ -158,7 +158,7 @@ fun NavigationSuiteScaffoldCustomConfigSample() {
                 modifier = Modifier.padding(16.dp),
                 text =
                     "Current NavigationSuiteType: $navSuiteType\n" +
-                            "Visibility: ${state.currentValue}",
+                        "Visibility: ${state.currentValue}",
                 textAlign = TextAlign.Center,
             )
             Button(onClick = { scope.launch { state.toggle() } }) {

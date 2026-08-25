@@ -16,6 +16,7 @@
 
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.Spring
@@ -58,7 +59,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.emertozd.compose.catalog.library.Sampled
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -101,7 +101,7 @@ fun PullToRefreshSample() {
             onRefresh = onRefresh,
         ) {
             LazyColumn(Modifier.fillMaxSize()) {
-                items(itemCount) { ListItem({ Text(text = "Item ${itemCount - it}") }) }
+                items(itemCount) { ListItem { Text(text = "Item ${itemCount - it}") } }
             }
         }
     }
@@ -152,7 +152,7 @@ fun PullToRefreshWithLoadingIndicatorSample() {
             },
         ) {
             LazyColumn(Modifier.fillMaxSize()) {
-                items(itemCount) { ListItem({ Text(text = "Item ${itemCount - it}") }) }
+                items(itemCount) { ListItem { Text(text = "Item ${itemCount - it}") } }
             }
         }
     }
@@ -216,7 +216,7 @@ fun PullToRefreshViewModelSample() {
             LazyColumn(Modifier.fillMaxSize()) {
                 if (!viewModel.isRefreshing) {
                     items(viewModel.itemCount) {
-                        ListItem({ Text(text = "Item ${viewModel.itemCount - it}") })
+                        ListItem { Text(text = "Item ${viewModel.itemCount - it}") }
                     }
                 }
             }
@@ -270,7 +270,7 @@ fun PullToRefreshScalingSample() {
         Box(Modifier.padding(it)) {
             LazyColumn(Modifier.fillMaxSize()) {
                 if (!isRefreshing) {
-                    items(itemCount) { ListItem({ Text(text = "Item ${itemCount - it}") }) }
+                    items(itemCount) { ListItem { Text(text = "Item ${itemCount - it}") } }
                 }
             }
             Box(
@@ -326,7 +326,7 @@ fun PullToRefreshLinearProgressIndicatorSample() {
         Box(Modifier.padding(it)) {
             LazyColumn(Modifier.fillMaxSize()) {
                 if (!isRefreshing) {
-                    items(itemCount) { ListItem({ Text(text = "Item ${itemCount - it}") }) }
+                    items(itemCount) { ListItem { Text(text = "Item ${itemCount - it}") } }
                 }
             }
             if (isRefreshing) {
@@ -404,7 +404,7 @@ fun PullToRefreshSampleCustomState() {
         ) {
             LazyColumn(Modifier.fillMaxSize()) {
                 if (!isRefreshing) {
-                    items(itemCount) { ListItem({ Text(text = "Item ${itemCount - it}") }) }
+                    items(itemCount) { ListItem { Text(text = "Item ${itemCount - it}") } }
                 }
             }
         }
@@ -466,7 +466,7 @@ fun PullToRefreshCustomIndicatorWithDefaultTransform() {
             },
         ) {
             LazyColumn(Modifier.fillMaxSize()) {
-                items(itemCount) { ListItem({ Text(text = "Item ${itemCount - it}") }) }
+                items(itemCount) { ListItem { Text(text = "Item ${itemCount - it}") } }
             }
         }
     }

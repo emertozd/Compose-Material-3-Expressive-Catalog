@@ -17,12 +17,13 @@
 package com.emertozd.compose.catalog.library.data
 
 import android.content.Context
+import com.emertozd.compose.catalog.library.model.Theme
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.emertozd.compose.catalog.library.model.Theme
+import java.lang.Exception
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull

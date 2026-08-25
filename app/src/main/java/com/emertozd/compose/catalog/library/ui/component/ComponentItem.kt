@@ -27,68 +27,69 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
+import com.emertozd.compose.catalog.R
+import com.emertozd.compose.catalog.library.model.Component
+import com.emertozd.compose.catalog.library.ui.common.ItemBanner
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.R
-import com.emertozd.compose.catalog.library.model.Component
-import com.emertozd.compose.catalog.library.ui.common.ItemBanner
 
 @Composable
 fun ComponentItem(
     component: Component,
     markExpressiveComponents: Boolean,
-    onClick: (component: Component) -> Unit
+    onClick: (component: Component) -> Unit,
 ) {
     OutlinedCard(
         onClick = { onClick(component) },
-        modifier = Modifier.height(ComponentItemHeight).padding(ComponentItemOuterPadding)
+        modifier = Modifier.height(ComponentItemHeight).padding(ComponentItemOuterPadding),
     ) {
-        Box(modifier = Modifier.fillMaxSize().padding(ComponentItemInnerPadding)) {
-            Image(
-                painter = painterResource(id = component.icon),
-                contentDescription = null,
-                modifier = Modifier.size(ComponentItemIconSize).align(Alignment.Center),
-                colorFilter =
-                    if (component.tintIcon) {
-                        ColorFilter.tint(LocalContentColor.current)
-                    } else {
-                        null
-                    },
-                contentScale = ContentScale.Inside
-            )
-            Text(
-                text = component.name,
-                modifier = Modifier.align(Alignment.BottomStart),
-                style = MaterialTheme.typography.bodySmall
-            )
-            if (!component.additionalInfo.isNullOrBlank()) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Box(modifier = Modifier.fillMaxSize().padding(ComponentItemInnerPadding)) {
+                Image(
+                    painter = painterResource(id = component.icon),
+                    contentDescription = null,
+                    modifier = Modifier.size(ComponentItemIconSize).align(Alignment.Center),
+                    colorFilter =
+                        if (component.tintIcon) {
+                            ColorFilter.tint(LocalContentColor.current)
+                        } else {
+                            null
+                        },
+                    contentScale = ContentScale.Inside,
+                )
                 Text(
-                    modifier =
-                        Modifier.background(
-                                MaterialTheme.colorScheme.error,
-                                MaterialTheme.shapes.medium
-                            )
-                            .align(Alignment.TopEnd)
-                            .padding(4.dp),
-                    text = component.additionalInfo,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.surface
+                    text = component.name,
+                    modifier = Modifier.align(Alignment.BottomStart),
+                    style = MaterialTheme.typography.bodySmall,
+                )
+                if (!component.additionalInfo.isNullOrBlank()) {
+                    Text(
+                        modifier =
+                            Modifier.background(
+                                    MaterialTheme.colorScheme.error,
+                                    MaterialTheme.shapes.medium,
+                                )
+                                .align(Alignment.TopEnd)
+                                .padding(4.dp),
+                        text = component.additionalInfo,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.surface,
+                    )
+                }
+            }
+            if (markExpressiveComponents && component.hasExpressiveExamples) {
+                ItemBanner(
+                    text = stringResource(R.string.expressive_banner),
+                    bannerSize = ComponentItemBannerSize,
                 )
             }
-        }
-        if (markExpressiveComponents && component.hasExpressiveExamples) {
-            ItemBanner(
-                text = "Expr",
-                bannerSize = ComponentItemBannerSize,
-            )
         }
     }
 }
@@ -108,10 +109,10 @@ fun ComponentItemPreview() {
                 docsUrl = "https://search.yahoo.com/search?p=accommodare",
                 sourceUrl = "https://www.google.com/#q=reque",
                 examples = listOf(),
-                additionalInfo = "Unofficial"
+                additionalInfo = "Unofficial",
             ),
         markExpressiveComponents = true,
-        onClick = {}
+        onClick = {},
     )
 }
 

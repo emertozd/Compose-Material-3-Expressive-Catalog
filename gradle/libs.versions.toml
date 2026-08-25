@@ -1,20 +1,20 @@
 [versions]
-adaptive = "1.3.0-alpha09"
-agp = "8.11.1"
+adaptive = "1.3.0"
+agp = "9.3.2"
 kotlin = "2.3.20"
 core-ktx = "1.18.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.3.0"
 espresso-core = "3.7.0"
 lifecycle-runtime-ktx = "2.10.0"
-compose = "1.11.0-beta02"
+compose = "1.13.0-alpha01"
 activity-compose = "1.13.0"
-compose-bom = "2026.03.01"
+compose-bom = "2026.08.00"
 material-icons = "1.7.8"
-material3 = "1.5.0-alpha16"
+material3 = "1.5.0-alpha26"
 navigation-compose = "2.9.7"
 datastore-core = "1.1.1"
-adaptive-navigation3 = "1.3.0-alpha09"
+adaptive-navigation3 = "1.3.0"
 
 [libraries]
 androidx-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "adaptive" }

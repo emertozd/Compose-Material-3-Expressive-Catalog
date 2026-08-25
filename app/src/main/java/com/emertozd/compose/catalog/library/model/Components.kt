@@ -51,6 +51,7 @@ private var nextId: Int = 1
 private fun nextId(): Int = nextId.also { nextId += 1 }
 
 // Components are ordered alphabetically by name.
+
 private val Adaptive =
     Component(
         id = nextId(),
@@ -566,6 +567,22 @@ private val TopAppBar =
         examples = TopAppBarExamples,
     )
 
+private val Typography =
+    Component(
+        id = nextId(),
+        name = "Typography",
+        description =
+            "The Material Design type scale includes a range of contrasting styles that " +
+                "support the needs of your product and its content.",
+        // No typography icon
+        guidelinesUrl = "$StyleGuidelinesUrl/typography",
+        docsUrl = "$PackageSummaryUrl#typography",
+        sourceUrl = "$Material3SourceUrl/Typography.kt",
+        examples = TypographyExamples,
+    )
+
+// Unofficial additions — components AndroidX ships samples for but does not register in its own
+// catalog. Shown with an "Unofficial" badge.
 private val MaterialShapes =
     Component(
         id = nextId(),
@@ -579,7 +596,6 @@ private val MaterialShapes =
         additionalInfo = "Unofficial",
     )
 
-
 private val SwipeToDismiss =
     Component(
         id = nextId(),
@@ -590,6 +606,50 @@ private val SwipeToDismiss =
         docsUrl = "$PackageSummaryUrl#shapes",
         sourceUrl = "$Material3SourceUrl/Shapes.kt",
         examples = SwipeToDismissExamples,
+        additionalInfo = "Unofficial",
+    )
+
+private val Ripple =
+    Component(
+        id = nextId(),
+        name = "Ripple",
+        description =
+            "Ripple is the visual indication emanating from user touch feedback on interactive " +
+                "components.",
+        // No ripple icon
+        guidelinesUrl = "$StyleGuidelinesUrl/motion/overview",
+        docsUrl = "$PackageSummaryUrl#ripple",
+        sourceUrl = "$Material3SourceUrl/Ripple.kt",
+        examples = RippleExamples,
+        additionalInfo = "Unofficial",
+    )
+
+private val Scrollbar =
+    Component(
+        id = nextId(),
+        name = "Scrollbar",
+        description =
+            "Scrollbars indicate the current scroll position within scrollable content.",
+        // No scrollbar icon
+        guidelinesUrl = "$ComponentGuidelinesUrl/scrollbars",
+        docsUrl = "$PackageSummaryUrl#scrollbar",
+        sourceUrl = "$Material3SourceUrl/Scrollbar.kt",
+        examples = ScrollbarExamples,
+        additionalInfo = "Unofficial",
+    )
+
+private val Surface =
+    Component(
+        id = nextId(),
+        name = "Surface",
+        description =
+            "Surface is the central building block of Material Design — a container with " +
+                "elevation, shape, and color.",
+        // No surface icon
+        guidelinesUrl = "$StyleGuidelinesUrl/elevation/overview",
+        docsUrl = "$PackageSummaryUrl#surface",
+        sourceUrl = "$Material3SourceUrl/Surface.kt",
+        examples = SurfaceExamples,
         additionalInfo = "Unofficial",
     )
 
@@ -635,6 +695,10 @@ val Components =
         ToggleButtons,
         Tooltips,
         TopAppBar,
+        Typography,
         MaterialShapes,
-        SwipeToDismiss
+        Ripple,
+        Scrollbar,
+        Surface,
+        SwipeToDismiss,
     )

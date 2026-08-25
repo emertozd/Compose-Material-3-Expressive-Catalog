@@ -1,3 +1,19 @@
+/*
+ * Copyright 2023 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.emertozd.compose.catalog.samples
 
 import android.os.Parcel
@@ -26,6 +42,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -47,7 +64,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.VerticalDragHandle
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.material3.adaptive.layout.AdaptStrategy
 import androidx.compose.material3.adaptive.layout.AnimatedPane
 import androidx.compose.material3.adaptive.layout.DockedEdge
@@ -73,6 +90,7 @@ import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.material3.adaptive.navigation.rememberSupportingPaneScaffoldNavigator
 import androidx.compose.material3.adaptive.navigation3.ListDetailSceneStrategy
+import androidx.compose.material3.adaptive.navigation3.LocalListDetailSceneScope
 import androidx.compose.material3.adaptive.navigation3.rememberListDetailSceneStrategy
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -429,7 +447,7 @@ fun <T> reflowAdaptStrategySample(): ThreePaneScaffoldNavigator<T> =
 @Composable
 fun <T> levitateAsDialogSample(): ThreePaneScaffoldNavigator<T> {
     val coroutineScope = rememberCoroutineScope()
-    val scaffoldDirective = calculatePaneScaffoldDirective(currentWindowAdaptiveInfo())
+    val scaffoldDirective = calculatePaneScaffoldDirective(currentWindowAdaptiveInfoV2())
     var navigator: ThreePaneScaffoldNavigator<T>? = null
     val onClick: () -> Unit = { coroutineScope.launch { navigator?.navigateBack() } }
     navigator =
@@ -476,7 +494,7 @@ fun <T> levitateAsDialogSample(): ThreePaneScaffoldNavigator<T> {
 @Sampled
 @Composable
 fun <T> levitateAsBottomSheetSample(): ThreePaneScaffoldNavigator<T> {
-    val scaffoldDirective = calculatePaneScaffoldDirective(currentWindowAdaptiveInfo())
+    val scaffoldDirective = calculatePaneScaffoldDirective(currentWindowAdaptiveInfoV2())
     val dragToResizeState = rememberDragToResizeState(dockedEdge = DockedEdge.Bottom)
     var navigator: ThreePaneScaffoldNavigator<T>? = null
     navigator =
@@ -876,6 +894,7 @@ private fun DetailPaneContent(
     selectedItem: String?,
     onShowExtra: () -> Unit,
     modifier: Modifier = Modifier,
+    backButton: (@Composable () -> Unit)? = null,
 ) {
     val title: String
     val description: String
@@ -891,7 +910,7 @@ private fun DetailPaneContent(
         modifier = modifier,
         title = title,
         containerColor = MaterialTheme.colorScheme.surfaceContainer,
-        backButton = {},
+        backButton = backButton ?: {},
     ) {
         Text(description)
         if (selectedItem != null) {
@@ -985,12 +1004,16 @@ private fun ExtraPaneContent(
 }
 
 @Composable
-private fun ExtraPaneContent(item: String, modifier: Modifier = Modifier) {
+private fun ExtraPaneContent(
+    item: String,
+    modifier: Modifier = Modifier,
+    backButton: (@Composable () -> Unit)? = null,
+) {
     BasicScreen(
         modifier = modifier,
         title = item,
         containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-        backButton = {},
+        backButton = backButton ?: {},
     ) {
         Text("This is extra content about $item.")
     }
@@ -1023,7 +1046,11 @@ private fun BasicScreen(
 }
 
 @Composable
-private fun BackButton(visible: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun BackButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    visible: Boolean = true,
+) {
     AnimatedVisibility(
         visible = visible,
         modifier = modifier,

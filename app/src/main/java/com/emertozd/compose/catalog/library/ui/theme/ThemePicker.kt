@@ -42,14 +42,20 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.minimumInteractiveComponentSize
+import com.emertozd.compose.catalog.R
 import com.emertozd.compose.catalog.library.model.ColorMode
+import com.emertozd.compose.catalog.library.model.ExpressiveThemeMode
+import com.emertozd.compose.catalog.library.model.FocusIndicationStyle
 import com.emertozd.compose.catalog.library.model.FontScaleMode
 import com.emertozd.compose.catalog.library.model.MaxFontScale
 import com.emertozd.compose.catalog.library.model.MinFontScale
 import com.emertozd.compose.catalog.library.model.TextDirection
 import com.emertozd.compose.catalog.library.model.Theme
+import com.emertozd.compose.catalog.library.model.ThemeColorMode
+import androidx.compose.material3.minimumInteractiveComponentSize
+import androidx.compose.material3.rememberSliderState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -60,9 +66,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.R
-import com.emertozd.compose.catalog.library.model.ExpressiveThemeMode
-import com.emertozd.compose.catalog.library.model.ThemeColorMode
 
 @Composable
 fun ThemePicker(theme: Theme, onThemeChange: (theme: Theme) -> Unit) {
@@ -251,7 +254,7 @@ fun ThemePicker(theme: Theme, onThemeChange: (theme: Theme) -> Unit) {
                     )
                 }
                 SwitchSetting(
-                    text = "Mark expressive components",
+                    text = stringResource(id = R.string.mark_expressive_components),
                     modifier = Modifier.fillMaxWidth(),
                     checked = theme.markExpressiveComponents,
                     onCheckedChange = { checked ->
@@ -261,7 +264,7 @@ fun ThemePicker(theme: Theme, onThemeChange: (theme: Theme) -> Unit) {
                     },
                 )
                 SwitchSetting(
-                    text = "Show only expressive components",
+                    text = stringResource(id = R.string.display_only_expressive_components),
                     modifier = Modifier.fillMaxWidth(),
                     checked = theme.showOnlyExpressiveComponents,
                     onCheckedChange = { checked ->
@@ -272,6 +275,47 @@ fun ThemePicker(theme: Theme, onThemeChange: (theme: Theme) -> Unit) {
                 )
             }
             HorizontalDivider(Modifier.padding(horizontal = ThemePickerPadding))
+        }
+        item {
+            Row {
+                Text(
+                    text = stringResource(id = R.string.focus_indication_style),
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier =
+                        Modifier.padding(
+                            start = ThemePickerPadding,
+                            // Align Badge closer to text
+                            end = ThemePickerPadding / 2,
+                        ),
+                )
+                Badge { Text(stringResource(R.string.experimental)) }
+            }
+            // LazyVerticalGrid can't be used within LazyColumn due to nested scrolling
+            val focusIndicationStyles = FocusIndicationStyle.values()
+            Column(modifier = Modifier.padding(ThemePickerPadding)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(ThemePickerPadding)) {
+                    RadioButtonOption(
+                        modifier = Modifier.weight(1f),
+                        option = focusIndicationStyles[0],
+                        selected = focusIndicationStyles[0] == theme.focusIndicationStyle,
+                        onClick = {
+                            if (theme.focusIndicationStyle != it) {
+                                onThemeChange(theme.copy(focusIndicationStyle = it))
+                            }
+                        },
+                    )
+                    RadioButtonOption(
+                        modifier = Modifier.weight(1f),
+                        option = focusIndicationStyles[1],
+                        selected = focusIndicationStyles[1] == theme.focusIndicationStyle,
+                        onClick = {
+                            if (theme.focusIndicationStyle != it) {
+                                onThemeChange(theme.copy(focusIndicationStyle = it))
+                            }
+                        },
+                    )
+                }
+            }
         }
         item {
             Column(
@@ -376,13 +420,16 @@ private fun CustomFontScaleSlider(
     onValueChange: (textScale: Float) -> Unit,
     onValueChangeFinished: () -> Unit,
 ) {
+    // SYNC-FIX(material3 1.5.0-alpha26): upstream uses rememberSliderState(trackRange = ...) +
+    // Slider(state, onValueChange), which is not in a published artifact yet. Use the value-based
+    // Slider overload until it ships, then restore the upstream body.
     Column(modifier = modifier) {
         Slider(
-            enabled = enabled,
             value = fontScale,
             onValueChange = onValueChange,
-            onValueChangeFinished = onValueChangeFinished,
             valueRange = fontScaleMin..fontScaleMax,
+            enabled = enabled,
+            onValueChangeFinished = onValueChangeFinished,
         )
         Text(
             text = stringResource(id = R.string.scale, fontScale),
@@ -403,7 +450,7 @@ private fun ExpressiveAlertDialog(
         text = {
             Text(
                 "Setting a new Material theme will reset the catalog and progress will be " +
-                        "lost. Please confirm before proceeding."
+                    "lost. Please confirm before proceeding."
             )
         },
         onDismissRequest = onDismissRequest,

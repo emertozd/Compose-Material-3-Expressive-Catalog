@@ -21,11 +21,11 @@ for developers to explore without needing to build the entire AndroidX package.
 
 ## Used Versions
 
-[**1.5.0-alpha16**](https://maven.google.com/web/index.html?q=androidx.compose.material3#androidx.compose.material3:material3:1.5.0-alpha16) Compose Material3
+[**1.5.0-alpha26**](https://maven.google.com/web/index.html?q=androidx.compose.material3#androidx.compose.material3:material3:1.5.0-alpha26) Compose Material3
 
-[**1.11.0-beta02**](https://maven.google.com/web/index.html?q=androidx.compose.ui#androidx.compose.ui:ui:1.11.0-beta02) Compose UI
+[**1.13.0-alpha01**](https://maven.google.com/web/index.html?q=androidx.compose.ui#androidx.compose.ui:ui:1.13.0-alpha01) Compose UI
 
-[**1.3.0-alpha09**](https://maven.google.com/web/index.html?q=androidx.compose.material3.adaptive#androidx.compose.material3.adaptive:adaptive:1.3.0-alpha03) Compose Material3 Adaptive
+[**1.3.0**](https://maven.google.com/web/index.html?q=androidx.compose.material3.adaptive#androidx.compose.material3.adaptive:adaptive:1.3.0) Compose Material3 Adaptive
 
 ## Download
 

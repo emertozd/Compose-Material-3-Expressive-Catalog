@@ -16,6 +16,7 @@
 
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -36,7 +37,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
-import com.emertozd.compose.catalog.library.Sampled
 import kotlinx.coroutines.launch
 
 @Preview
@@ -51,13 +51,13 @@ fun SwipeToDismissListItems() {
             state = dismissState,
             backgroundContent = {
                 val color by
-                animateColorAsState(
-                    when (dismissState.targetValue) {
-                        SwipeToDismissBoxValue.Settled -> Color.LightGray
-                        SwipeToDismissBoxValue.StartToEnd -> Color.Green
-                        SwipeToDismissBoxValue.EndToStart -> Color.Red
-                    }
-                )
+                    animateColorAsState(
+                        when (dismissState.targetValue) {
+                            SwipeToDismissBoxValue.Settled -> Color.LightGray
+                            SwipeToDismissBoxValue.StartToEnd -> Color.Green
+                            SwipeToDismissBoxValue.EndToStart -> Color.Red
+                        }
+                    )
                 Box(Modifier.fillMaxSize().background(color))
             },
             onDismiss = { direction ->
@@ -70,7 +70,7 @@ fun SwipeToDismissListItems() {
         ) {
             OutlinedCard(shape = RectangleShape) {
                 ListItem(
-                    headlineContent = { Text("Cupcake") },
+                    content = { Text("Cupcake") },
                     supportingContent = { Text("Swipe me left or right!") },
                 )
             }

@@ -16,6 +16,7 @@
 
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -57,7 +58,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.library.Sampled
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -315,8 +315,8 @@ fun ScaffoldWithMultilineSnackbar() {
                     scope.launch {
                         val longMessage =
                             "Very very very very very very very very very very very very very " +
-                                    "very very very very very very very very very very very very " +
-                                    "very very very very very very very very very very long message"
+                                "very very very very very very very very very very very very " +
+                                "very very very very very very very very very very long message"
                         snackbarHostState.showSnackbar(longMessage)
                     }
                 }

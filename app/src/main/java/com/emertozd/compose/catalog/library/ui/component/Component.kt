@@ -18,6 +18,7 @@ package com.emertozd.compose.catalog.library.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.calculateEndPadding
@@ -33,6 +34,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import com.emertozd.compose.catalog.R
+import com.emertozd.compose.catalog.library.model.Component
+import com.emertozd.compose.catalog.library.model.Example
+import com.emertozd.compose.catalog.library.model.Theme
+import com.emertozd.compose.catalog.library.ui.common.CatalogScaffold
+import com.emertozd.compose.catalog.library.ui.example.ExampleItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,12 +48,6 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.R
-import com.emertozd.compose.catalog.library.model.Component
-import com.emertozd.compose.catalog.library.model.Example
-import com.emertozd.compose.catalog.library.model.Theme
-import com.emertozd.compose.catalog.library.ui.common.CatalogScaffold
-import com.emertozd.compose.catalog.library.ui.example.ExampleItem
 
 @Composable
 fun Component(
@@ -100,13 +101,15 @@ fun Component(
                 }
             }
             item {
-                Text(
-                    text = stringResource(id = R.string.description),
-                    style = MaterialTheme.typography.bodyLarge,
-                )
-                Spacer(modifier = Modifier.height(ComponentPadding))
-                Text(text = component.description, style = MaterialTheme.typography.bodyMedium)
-                Spacer(modifier = Modifier.height(ComponentDescriptionPadding))
+                Column {
+                    Text(
+                        text = stringResource(id = R.string.description),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                    Spacer(modifier = Modifier.height(ComponentPadding))
+                    Text(text = component.description, style = MaterialTheme.typography.bodyMedium)
+                    Spacer(modifier = Modifier.height(ComponentDescriptionPadding))
+                }
             }
             item {
                 Text(

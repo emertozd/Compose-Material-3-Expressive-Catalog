@@ -16,6 +16,7 @@
 
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.TrendingUp
@@ -31,17 +32,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.emertozd.compose.catalog.library.Sampled
 
 @Sampled
 @Composable
 @Preview
 fun SegmentedButtonSingleSelectSample() {
-    var selectedIndex by remember { mutableStateOf(0) }
+    var selectedIndex by rememberSaveable { mutableStateOf(0) }
     val options = listOf("Day", "Month", "Week")
     SingleChoiceSegmentedButtonRow {
         options.forEachIndexed { index, label ->
@@ -60,7 +60,7 @@ fun SegmentedButtonSingleSelectSample() {
 @Composable
 @Preview
 fun SegmentedButtonMultiSelectSample() {
-    val checkedList = remember { mutableStateListOf<Int>() }
+    val checkedList = rememberSaveable { mutableStateListOf<Int>() }
     val options = listOf("Favorites", "Trending", "Saved")
     val icons =
         listOf(

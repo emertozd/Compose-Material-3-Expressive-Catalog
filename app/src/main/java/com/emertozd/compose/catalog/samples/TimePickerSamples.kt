@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.emertozd.compose.catalog.samples
 
+import com.emertozd.compose.catalog.library.Sampled
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,10 +28,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimeInput
 import androidx.compose.material3.TimePicker
+import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.TimePickerDialog
 import androidx.compose.material3.TimePickerDialogDefaults
 import androidx.compose.material3.TimePickerDialogDefaults.MinHeightForTimePicker
 import androidx.compose.material3.TimePickerDisplayMode
+import androidx.compose.material3.TimeScroll
 import androidx.compose.material3.isHourInputValid
 import androidx.compose.material3.isInputValid
 import androidx.compose.material3.rememberTimePickerState
@@ -37,24 +42,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.emertozd.compose.catalog.library.Sampled
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Sampled
 @Composable
 @Preview
 fun TimePickerSample() {
-    var showTimePicker by remember { mutableStateOf(false) }
+    var showTimePicker by rememberSaveable { mutableStateOf(false) }
     val state = rememberTimePickerState()
     val formatter = remember { SimpleDateFormat("hh:mm a", Locale.getDefault()) }
     val snackState = remember { SnackbarHostState() }
@@ -97,12 +101,11 @@ fun TimePickerSample() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Sampled
 @Composable
 @Preview
 fun TimeInputSample() {
-    var showTimePicker by remember { mutableStateOf(false) }
+    var showTimePicker by rememberSaveable { mutableStateOf(false) }
     val state = rememberTimePickerState()
     val formatter = remember { SimpleDateFormat("hh:mm a", Locale.getDefault()) }
     val snackState = remember { SnackbarHostState() }
@@ -121,6 +124,7 @@ fun TimeInputSample() {
             onDismissRequest = { showTimePicker = false },
             confirmButton = {
                 TextButton(
+                    enabled = state.isInputValid,
                     onClick = {
                         val cal = Calendar.getInstance()
                         cal.set(Calendar.HOUR_OF_DAY, state.hour)
@@ -130,7 +134,7 @@ fun TimeInputSample() {
                             snackState.showSnackbar("Entered time: ${formatter.format(cal.time)}")
                         }
                         showTimePicker = false
-                    }
+                    },
                 ) {
                     Text("Ok")
                 }
@@ -143,16 +147,15 @@ fun TimeInputSample() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Sampled
 @Composable
 @Preview
 fun TimePickerSwitchableSample() {
-    var showTimePicker by remember { mutableStateOf(false) }
+    var showTimePicker by rememberSaveable { mutableStateOf(false) }
     val state = rememberTimePickerState()
     val formatter = remember { SimpleDateFormat("hh:mm a", Locale.getDefault()) }
     val snackState = remember { SnackbarHostState() }
-    var displayMode by remember { mutableStateOf(TimePickerDisplayMode.Picker) }
+    var displayMode by rememberSaveable { mutableStateOf(TimePickerDisplayMode.Picker) }
     val snackScope = rememberCoroutineScope()
     val configuration = LocalConfiguration.current
 
@@ -169,6 +172,7 @@ fun TimePickerSwitchableSample() {
             onDismissRequest = { showTimePicker = false },
             confirmButton = {
                 TextButton(
+                    enabled = state.isInputValid,
                     onClick = {
                         val cal = Calendar.getInstance()
                         cal.set(Calendar.HOUR_OF_DAY, state.hour)
@@ -178,7 +182,7 @@ fun TimePickerSwitchableSample() {
                             snackState.showSnackbar("Entered time: ${formatter.format(cal.time)}")
                         }
                         showTimePicker = false
-                    }
+                    },
                 ) {
                     Text("Ok")
                 }
@@ -211,3 +215,5 @@ fun TimePickerSwitchableSample() {
         }
     }
 }
+
+

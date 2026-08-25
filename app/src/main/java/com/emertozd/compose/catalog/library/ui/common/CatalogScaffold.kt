@@ -16,20 +16,14 @@
 
 package com.emertozd.compose.catalog.library.ui.common
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberModalBottomSheetState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import com.emertozd.compose.catalog.library.model.Theme
 import com.emertozd.compose.catalog.library.ui.theme.ThemePicker
 import com.emertozd.compose.catalog.library.util.GuidelinesUrl
@@ -40,6 +34,15 @@ import com.emertozd.compose.catalog.library.util.ReleasesUrl
 import com.emertozd.compose.catalog.library.util.SourceUrl
 import com.emertozd.compose.catalog.library.util.TermsUrl
 import com.emertozd.compose.catalog.library.util.openUrl
+import androidx.compose.material3.rememberBottomSheetState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,7 +65,7 @@ fun CatalogScaffold(
 ) {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    val sheetState = rememberModalBottomSheetState()
+    val sheetState = rememberBottomSheetState(initialValue = SheetValue.Hidden)
     var openThemePicker by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
@@ -84,8 +87,9 @@ fun CatalogScaffold(
                 onLicensesClick = { context.openUrl(licensesUrl) },
             )
         },
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        content = content,
+        content = { paddingValues ->
+            Box(Modifier.padding(paddingValues)) { content(PaddingValues(0.dp)) }
+        },
     )
 
     if (openThemePicker) {
